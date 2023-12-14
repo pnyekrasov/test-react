@@ -4,6 +4,12 @@ const { handleMongooseError } = require("../helpers");
 
 const userSchema = new Schema(
   {
+    name: {
+    type: String,
+    required: [true,('Name is required')],
+    match: 
+      /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
+    },
     email: {
       type: String,
       required: [true, "Email is required"],

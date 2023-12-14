@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const jsonParser = express.json();
+// const jsonParser = express.json();
 
 const userCtrl = require("../controllers/UserControllers");
 
@@ -12,7 +12,7 @@ const schemes = require("../schemes/users");
 
 router.post(
   "/register",
-  jsonParser,
+  // jsonParser,
   validateBody(schemes.userJoiSchema),
   userCtrl.register
 );

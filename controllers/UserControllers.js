@@ -27,8 +27,8 @@ class UserController {
     res.status(201).send({
       code: 201,
       user: {
+        name: newUser.name,
         email: newUser.email,
-        subscription: newUser.subscription,
       },
     });
   });
@@ -47,7 +47,7 @@ class UserController {
   //   }
 
   //   const payload = { id: user._id };
-  //   const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "16h" });
+  //   const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "500h" });
 
   //   await User.findByIdAndUpdate(user._id, { token });
   //   const { subscription } = user;
