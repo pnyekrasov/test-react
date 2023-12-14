@@ -16,19 +16,22 @@ const userSchema = new Schema(
       required: [true, "Password is required"],
       minlength: 4,
     },
-    subscription: {
-      type: String,
-      enum: ["starter", "pro", "business"],
-      default: "starter",
-    },
-    token: {
-      type: String,
-      default: null,
-    },
-    avatarURL: {
-      type: String,
-      required: true,
-    }
+    // token: {
+    //   type: String,
+    //   default: null,
+    // },
+    // avatarURL: {
+    //   type: String,
+    //   required: true,
+    // },
+    // verify: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // verificationToken: {
+    //   type: String,
+    //   default: null,
+    // },
   },
   { versionKey: false, timestamps: true }
 );
