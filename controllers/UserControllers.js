@@ -1,8 +1,8 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const gravatar = require("gravatar");
+// const gravatar = require("gravatar");
 
-const { JWT_SECRET } = process.env;
+const { SECRET_KEY } = process.env;
 
 const User = require("../models/user");
 
@@ -10,19 +10,23 @@ const { HttpError, ctrlWrapper } = require("../helpers");
 
 class UserController {
   register = ctrlWrapper(async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password, goal, gender, height, weight } = req.body;
 
     const result = await User.findOne({ email }).exec();
     if (result) {
       throw HttpError(409, `Email ${email} in use`);
     }
-    if (!email || !password) {
+    if (!email || !password || !goal || !gender || !height || !weight) {
       throw HttpError(400);
     }
 
     const hashPassword = await bcrypt.hash(password, 10);
     const avatarURL = gravatar.url(email);
-    const newUser = await User.create({ ...req.body, password: hashPassword, avatarURL });
+    const newUser = await User.create({
+      ...req.body,
+      password: hashPassword,
+      // avatarURL,
+    });
 
     res.status(201).send({
       code: 201,
