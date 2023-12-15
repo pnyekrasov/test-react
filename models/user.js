@@ -35,6 +35,7 @@ const userSchema = new Schema(
       enum: ["Male", "Female"],
       required: [true, "Gender is required"],
     },
+
     height: {
       type: Number,
       required: [true, "Height is required"],
@@ -44,6 +45,16 @@ const userSchema = new Schema(
       type: Number,
       required: [true, "Weight is required"],
     },
+
+    kef: {
+      type: Number,
+      enum: [1.2, 1.375, 1.55, 1.725, 1.9],
+      required: [true, "Activity is required"],
+    },
+
+    
+
+
 
     // token: {
     //   type: String,

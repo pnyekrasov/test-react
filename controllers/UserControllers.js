@@ -10,18 +10,18 @@ const { HttpError, ctrlWrapper } = require("../helpers");
 
 class UserController {
   register = ctrlWrapper(async (req, res) => {
-    const { email, password, goal, gender, height, weight } = req.body;
+    const { name, email, password, goal, gender, height, weight } = req.body;
 
     const result = await User.findOne({ email }).exec();
     if (result) {
       throw HttpError(409, `Email ${email} in use`);
     }
-    if (!email || !password || !goal || !gender || !height || !weight) {
+    if (!name || !email || !password || !goal || !gender || !height || !weight) {
       throw HttpError(400);
     }
 
     const hashPassword = await bcrypt.hash(password, 10);
-    const avatarURL = gravatar.url(email);
+    // const avatarURL = gravatar.url(email);
     const newUser = await User.create({
       ...req.body,
       password: hashPassword,
@@ -31,8 +31,15 @@ class UserController {
     res.status(201).send({
       code: 201,
       user: {
+        id: newUser._id,
         name: newUser.name,
         email: newUser.email,
+        password: newUser.password,
+        goal: newUser.goal,
+        gender: newUser.gender,
+        height: newUser.goal,
+        weight: newUser.gender,
+        kef: newUser.kef,
       },
     });
   });

@@ -28,6 +28,10 @@ const userJoiSchema = Joi.object({
   weight: Joi.number()
   .required("Set weight for user"),
 
+  kef: Joi.number()
+  .valid (1.2, 1.375, 1.55, 1.725, 1.9)
+  .required("Set activity for user"),
+
   // token: Joi.string().default(null),
 });
 
